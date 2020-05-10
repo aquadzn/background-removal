@@ -1,6 +1,18 @@
 # U2Net API
 
-[U^2-Net](https://github.com/NathanUA/U-2-Net) as a service for salient object detection. Using FastAPI & Pytorch.
+[U^2-Net](https://github.com/NathanUA/U-2-Net) as a service for background removal. Using FastAPI & Pytorch.
+
+
+## Examples
+
+**Using small model on CPU (better results with larger model)**
+
+Original | Removed
+--- | ---
+![emily.jpg](examples/emily.jpg) | ![emily_res.png](examples/emily_res.png)
+![saul.png](examples/saul.png) | ![saul_res.png](examples/saul_res.png)
+![godfather.jpg](examples/godfather.jpg) | ![godfather_res.png](examples/godfather_res.png)
+![bike.jpg](examples/bike.jpg) | ![bike_res.png](examples/bike_res.png)
 
 
 ## Installation

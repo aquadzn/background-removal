@@ -24,16 +24,20 @@ def ping():
 @app.post("/predict")
 def predict(file: bytes = File(...)):
 
-    img = np.array(Image.open(io.BytesIO(file)))
+    img = Image.open(io.BytesIO(file))
 
     start = time.time()
-    result = detect.predict(img)
-    result = result.resize((img.shape[1], img.shape[0]), resample=Image.BILINEAR)
+
+    output = detect.predict(np.array(img))
 
     logging.info(f"Predicted in {time.time() - start:.2f} sec")
 
+    output = output.resize((img.size), resample=Image.BILINEAR)  # remove resample
+    empty_img = Image.new("RGBA", (img.size), 0)
+    new_img = Image.composite(img, empty_img, output.convert("L"))
+
     buffer = io.BytesIO()
-    result.save(buffer, "PNG")
+    new_img.save(buffer, "PNG")
     buffer.seek(0)
 
     return StreamingResponse(buffer, media_type="image/png")
