@@ -22,4 +22,5 @@ curl -X POST -F "file=@test_image.jpg" "http://127.0.0.1:8000/predict" -o result
 ## Credits
 
 https://github.com/NathanUA/U-2-Net
+
 https://github.com/cyrildiagne/u2net-http
