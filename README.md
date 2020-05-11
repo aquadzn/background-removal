@@ -1,6 +1,10 @@
 # U2Net API
 
-[U^2-Net](https://github.com/NathanUA/U-2-Net) as a service for background removal. Using Flask & Pytorch.
+This is the mono-repository of [U^2-Net](https://github.com/NathanUA/U-2-Net) as a service for background removal.
+
+Built with VueJS, Buefy, Bulma for the [front](front/) and Flask and Pytorch for the [back](back/).
+
+Website is coming...
 
 
 ## Examples
@@ -18,12 +22,16 @@ Original | Removed
 ## Installation
 
 * Clone the repo
+
+### Back-end
+
+* `cd back/`
 * Install dependencies with `pip install -r requirements.txt`
 
 * Optional: Download the bigger model [u2net.pth (173.6 MB)](https://drive.google.com/file/d/1ao1ovG1Qtx4b7EoskHXmi2E9rp5CHLcZ/view?usp=sharing) and set `model_name = "u2net"` inside [detect.py](detect.py)
 
 
-## Usage
+#### Usage
 
 Run server with `python main.py`
 
@@ -36,6 +44,32 @@ To get base64 output image url (**you should not do this in terminal** 🤐):
 ```bash
 curl -X POST -F "file=@test_image.jpg" "http://0.0.0.0:4000/predict"
 ```
+
+
+### Front-end
+
+* `cd front/`
+
+#### Project setup
+```
+npm install
+```
+
+#### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+#### Compiles and minifies for production
+```
+npm run build
+```
+
+#### Lints and fixes files
+```
+npm run lint
+```
+
 
 ## Credits
 
