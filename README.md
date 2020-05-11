@@ -9,10 +9,10 @@
 
 Original | Removed
 --- | ---
-![emily.jpg](examples/emily.jpg) | ![emily_res.png](examples/emily_res.png)
-![saul.png](examples/saul.png) | ![saul_res.png](examples/saul_res.png)
-![godfather.jpg](examples/godfather.jpg) | ![godfather_res.png](examples/godfather_res.png)
-![bike.jpg](examples/bike.jpg) | ![bike_res.png](examples/bike_res.png)
+![emily.jpg](https://i.ibb.co/PzsvZtV/emily.jpg) | ![emily_res.png](https://i.ibb.co/Km2QXwx/emily-res.png)
+![saul.png](https://i.ibb.co/Zg4B3WZ/saul.png) | ![saul_res.png](https://i.ibb.co/T1KTHSz/saul-res.png)
+![godfather.jpg](https://i.ibb.co/T22gfLY/godfather.jpg) | ![godfather_res.png](https://i.ibb.co/Bs2MYpJ/godfather-res.png)
+![bike.jpg](https://i.ibb.co/s3v6CCs/bike.jpg) | ![bike_res.png](https://i.ibb.co/bKXPmrZ/bike-res.png)
 
 
 ## Installation

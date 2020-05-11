@@ -35,3 +35,7 @@ pip-delete-this-directory.txt
 
 # VSCode
 .vscode
+
+# Pytorch models
+*.pth
+*/*.pth
