@@ -1,38 +1,50 @@
+import os
 import io
 import time
+import base64
 import logging
 
 import numpy as np
 from PIL import Image
 
-import uvicorn
-from fastapi import FastAPI, File
-from fastapi.responses import StreamingResponse
+from flask import Flask, request, send_file, jsonify
+from flask_cors import CORS
 
 import detect
 
 
-app = FastAPI()
+app = Flask(__name__)
+CORS(app)
+
 logging.basicConfig(level=logging.INFO)
 
 
-@app.get("/")
+@app.route("/", methods=["GET"])
 def ping():
     return "U^2-Net!"
 
 
-@app.post("/predict")
-def predict(file: bytes = File(...)):
-
-    img = Image.open(io.BytesIO(file))
+@app.route("/predict", methods=["POST"])
+def predict():
 
     start = time.time()
 
+    if 'file' not in request.files:
+        return jsonify({'error': 'missing file'}), 400
+
+    if request.files['file'].filename.rsplit('.', 1)[1].lower() not in ["jpg", "png", "jpeg"]:
+        return jsonify({'error': 'invalid file format'}), 400
+
+    data = request.files['file'].read()
+    
+    if len(data) == 0:
+        return jsonify({'error': 'empty image'}), 400
+
+    img = Image.open(io.BytesIO(data))
+
     output = detect.predict(np.array(img))
+    output = output.resize((img.size), resample=Image.BILINEAR) # remove resample
 
-    logging.info(f"Predicted in {time.time() - start:.2f} sec")
-
-    output = output.resize((img.size), resample=Image.BILINEAR)  # remove resample
     empty_img = Image.new("RGBA", (img.size), 0)
     new_img = Image.composite(img, empty_img, output.convert("L"))
 
@@ -40,9 +52,12 @@ def predict(file: bytes = File(...)):
     new_img.save(buffer, "PNG")
     buffer.seek(0)
 
-    return StreamingResponse(buffer, media_type="image/png")
+    logging.info(f"Predicted in {time.time() - start:.2f} sec")
+    
+    return f"data:image/png;base64,{base64.b64encode(buffer.getvalue()).decode()}"
 
 
 if __name__ == "__main__":
-    logging.info("Model ready to serve")
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    os.environ['FLASK_ENV'] = 'development'
+    port = int(os.environ.get('PORT', 4000))
+    app.run(debug=True, host='0.0.0.0', port=port)

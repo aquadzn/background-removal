@@ -1,6 +1,6 @@
 torch
 torchvision
-fastapi
-uvicorn
+flask
+flask-cors
 pillow
 scikit-image

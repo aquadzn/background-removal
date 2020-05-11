@@ -1,6 +1,6 @@
 # U2Net API
 
-[U^2-Net](https://github.com/NathanUA/U-2-Net) as a service for background removal. Using FastAPI & Pytorch.
+[U^2-Net](https://github.com/NathanUA/U-2-Net) as a service for background removal. Using Flask & Pytorch.
 
 
 ## Examples
@@ -27,8 +27,14 @@ Original | Removed
 
 Run server with `python main.py`
 
+To download output image with curl:
 ```bash
-curl -X POST -F "file=@test_image.jpg" "http://127.0.0.1:8000/predict" -o result.png
+curl -X POST -F "file=@test_image.jpg" "http://0.0.0.0:4000/download" -o result.png
+```
+
+To get base64 output image url (**you should not do this in terminal** 🤐):
+```bash
+curl -X POST -F "file=@test_image.jpg" "http://0.0.0.0:4000/predict"
 ```
 
 ## Credits
