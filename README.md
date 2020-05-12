@@ -1,6 +1,6 @@
 # U2Net API
 
-This is the mono-repository of [U^2-Net](https://github.com/NathanUA/U-2-Net) as a service for background removal.
+This is the mono-repository of [U^2-Net: Going Deeper with Nested U-Structure for Salient Object Detection](https://github.com/NathanUA/U-2-Net) as a service for background removal.
 
 Built with VueJS, Buefy, Bulma for the [front](front/) and Flask and Pytorch for the [back](back/).
 
