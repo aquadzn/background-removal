@@ -4,7 +4,7 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 const base = process.env.NODE_ENV === 'production'
-  ? '/website/'
+  ? '/background-removal/'
   : '/';
 
 export default new Router({
