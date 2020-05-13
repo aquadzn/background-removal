@@ -8,7 +8,7 @@ import About from "./views/About.vue";
 
 Vue.use(Router);
 
-const base = process.env.NODE_ENV === "production" ? "/test-vue/" : "/";
+const base = process.env.NODE_ENV === "production" ? "/background-removal/" : "/";
 
 export default new Router({
   mode: "history",

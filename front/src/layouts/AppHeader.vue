@@ -31,7 +31,7 @@
         <li class="nav-item">
           <a
             class="nav-link nav-link-icon"
-            href="https://github.com/aquadzn/test-vue"
+            href="https://github.com/aquadzn/background-removal"
             target="_blank"
             rel="noopener"
             data-toggle="tooltip"
