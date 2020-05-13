@@ -16,7 +16,7 @@ npm run build
 
 git add -A
 
-git commit -m '🚀 "$(curl -s whatthecommit.com/index.txt)"'
+git commit -m "🚀 $(curl -s http://whatthecommit.com/index.txt)"
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 git push
