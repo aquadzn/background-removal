@@ -16,6 +16,8 @@ import detect
 app = Flask(__name__)
 CORS(app)
 
+net = detect.load_model(model_name="u2net")
+
 logging.basicConfig(level=logging.INFO)
 
 
@@ -24,8 +26,8 @@ def ping():
     return "U^2-Net!"
 
 
-@app.route("/predict", methods=["POST"])
-def predict():
+@app.route("/remove", methods=["POST"])
+def remove():
 
     start = time.time()
 
@@ -42,7 +44,7 @@ def predict():
 
     img = Image.open(io.BytesIO(data))
 
-    output = detect.predict(np.array(img))
+    output = detect.predict(net, np.array(img))
     output = output.resize((img.size), resample=Image.BILINEAR) # remove resample
 
     empty_img = Image.new("RGBA", (img.size), 0)
