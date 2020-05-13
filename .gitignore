@@ -1,3 +1,24 @@
+# Global
 .vscode
-__pycache__
-dist
+
+# Back
+back/*.pth
+back/__pycache__/
+back/*/__pycache__/
+back/**/__pycache__/
+back/*.py[cod]
+back/*$py.class
+
+# Front
+front/.DS_Store
+front/node_modules
+front/dist
+
+# local env files
+front/.env.local
+front/.env.*.local
+
+# Log files
+front/npm-debug.log*
+front/yarn-debug.log*
+front/yarn-error.log*

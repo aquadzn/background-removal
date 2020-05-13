@@ -16,19 +16,19 @@ read -p '>  ' tag
 
 echo -e "\n\e[33mWarning!\nThis can take some time because of the size of image.\e[0m\n"
 
-# gcloud builds submit "./back" --tag "gcr.io/$project_id/$tag"
+gcloud builds submit "./back" --tag "gcr.io/$project_id/$tag"
 
-# gcloud beta run deploy "$tag" \
-#     --image "gcr.io/$project_id/$tag" \
-#     --platform=managed \
-#     --allow-unauthenticated \
-#     --region=us-east1 \
-#     --concurrency=1 \
-#     --memory=2Gi
+gcloud beta run deploy "$tag" \
+    --image "gcr.io/$project_id/$tag" \
+    --platform=managed \
+    --allow-unauthenticated \
+    --region=us-east1 \
+    --concurrency=1 \
+    --memory=2Gi
 
 echo -e '\n🤔 \e[34mDo yo want to delete images on GCR after building Cloud Run services ? (y/n) :\e[0m '
 read -p '>  ' question
 
-# [ "$question" != "${question#[Yy]}" ] && gcloud container images delete --force-delete-tags "gcr.io/$project_id/$tag"
+[ "$question" != "${question#[Yy]}" ] && gcloud container images delete --force-delete-tags "gcr.io/$project_id/$tag"
 
 echo -e "\n✅ \e[32mDone!\e[0m\nURLs of Cloud Run services:\n\n$(gcloud beta run services list --platform=managed |grep -Po 'https.?://\S+')"
