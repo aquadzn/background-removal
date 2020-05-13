@@ -148,7 +148,7 @@ export default {
       let formData = new FormData();
       formData.append("file", this.image);
       axios
-        .post("http://0.0.0.0:8080/predict", formData, {
+        .post("https://background-removal-oylgf3jsja-ue.a.run.app/remove", formData, {
           headers: {
             "Content-Type": "multipart/form-data"
           }
