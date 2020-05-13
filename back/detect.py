@@ -17,7 +17,7 @@ from torchvision import transforms  # , utils
 from u2net import utils, model
 
 
-model_name = "u2netp"  # un2net
+model_name = "u2net"  # un2net
 
 
 if model_name == "u2netp":
