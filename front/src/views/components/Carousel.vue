@@ -1,5 +1,5 @@
 <template>
-  <section id="carousel-bg" class="section section-shaped section-lg my-0">
+  <section id="carousel-bg" class="section section-shaped section-xl my-0">
     <!-- <div class="shape shape-style-1 shape-primary">
             <span></span>
             <span></span>

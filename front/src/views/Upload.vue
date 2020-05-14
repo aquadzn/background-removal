@@ -1,6 +1,6 @@
 <template>
-  <section id="upload-bg" class="section section-shaped section-xl my-0">
-    <div class="container mt-lg mb-lg">
+  <section id="upload-bg" class="section section-shaped section-lg my-0">
+    <div class="container mt-md">
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <card
@@ -52,7 +52,7 @@
                   dismissible
                 >
                   <span slot="text"
-                    ><strong>Request failed!</strong> Please try again.</span
+                    ><strong>Failed!</strong> Clear image and try again.</span
                   >
                 </base-alert>
                 <base-alert
