@@ -1,4 +1,5 @@
 import os
+import gc
 import io
 import time
 import base64
@@ -16,7 +17,7 @@ import detect
 app = Flask(__name__)
 CORS(app)
 
-net = detect.load_model(model_name="u2net")
+net = detect.load_model(model_name="u2netp")
 
 logging.basicConfig(level=logging.INFO)
 
@@ -54,7 +55,7 @@ def remove():
     new_img.save(buffer, "PNG")
     buffer.seek(0)
 
-    logging.info(f"Predicted in {time.time() - start:.2f} sec")
+    logging.info(f" Predicted in {time.time() - start:.2f} sec")
     
     return f"data:image/png;base64,{base64.b64encode(buffer.getvalue()).decode()}"
 

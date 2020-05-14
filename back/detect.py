@@ -9,7 +9,7 @@ from skimage import transform
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.autograd import Variable
+# from torch.autograd import Variable
 
 import torchvision
 from torchvision import transforms  # , utils
@@ -25,11 +25,12 @@ def load_model(model_name: str = "u2net"):
         net = model.U2NET(3, 1)
     else:
         print("Choose between u2net or u2netp")
+    print(f"INFO:root: Loaded {model_name}")
 
     try:
         if torch.cuda.is_available():
             net.load_state_dict(torch.load(model_name + ".pth"))
-            net.cuda()
+            net.to(torch.device("cuda"))
         else:
             net.load_state_dict(torch.load(model_name + ".pth", map_location="cpu"))
     except FileNotFoundError:
@@ -75,23 +76,22 @@ def predict(net, item):
 
     sample = preprocess(item)
 
-    inputs_test = sample["image"].unsqueeze(0)
-    inputs_test = inputs_test.type(torch.FloatTensor)
+    with torch.no_grad():
 
-    if torch.cuda.is_available():
-        inputs_test = Variable(inputs_test.cuda())
-    else:
-        inputs_test = Variable(inputs_test)
+        if torch.cuda.is_available():
+            inputs_test = torch.cuda.FloatTensor(sample["image"].unsqueeze(0).float())
+        else:
+            inputs_test = torch.FloatTensor(sample["image"].unsqueeze(0).float())
 
-    d1, d2, d3, d4, d5, d6, d7 = net(inputs_test)
+        d1, d2, d3, d4, d5, d6, d7 = net(inputs_test)
 
-    pred = d1[:, 0, :, :]
-    predict = norm_pred(pred)
+        pred = d1[:, 0, :, :]
+        predict = norm_pred(pred)
 
-    predict = predict.squeeze()
-    predict_np = predict.cpu().data.numpy()
-    img = Image.fromarray(predict_np * 255).convert("RGB")
+        predict = predict.squeeze()
+        predict_np = predict.cpu().detach().numpy()
+        img = Image.fromarray(predict_np * 255).convert("RGB")
 
-    del d1, d2, d3, d4, d5, d6, d7
+        del d1, d2, d3, d4, d5, d6, d7, pred, predict, predict_np, inputs_test, sample
 
-    return img
+        return img
