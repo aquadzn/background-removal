@@ -17,7 +17,7 @@ import detect
 app = Flask(__name__)
 CORS(app)
 
-net = detect.load_model(model_name="u2netp")
+net = detect.load_model(model_name="u2net")
 
 logging.basicConfig(level=logging.INFO)
 
