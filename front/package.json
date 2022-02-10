@@ -13,7 +13,7 @@
     "core-js": "^3.8.2",
     "file-saver": "^2.0.5",
     "flatpickr": "^4.6.9",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "nouislider": "^14.6.3",
     "register-service-worker": "^1.7.2",
     "sass-loader": "^8.0.2",
